@@ -24,7 +24,7 @@ Follow these steps to set up the project on your local machine:
 
 ### **1. Clone the Repository**
 ```bash
-git clone https://github.com/uy-in/uroodx.git
+git clone https://github.com/ujjawaldeveloper/uroodx.git
 cd uroodx
 ```
 
@@ -35,7 +35,7 @@ cd frontend
 ```
 Install dependencies:
 ```bash
-npm install
+npm i
 ```
 Start the development server:
 ```bash
@@ -50,7 +50,7 @@ cd ../backend
 ```
 Install dependencies:
 ```bash
-npm install
+npm i
 ```
 Create a `.env` file in the backend folder with the following variables:
 ```bash
@@ -61,33 +61,6 @@ API_KEY=your_api_key_for_courier_integration
 Start the backend server:
 ```bash
 npm run dev
-```
-
-### **4. Combined Start**
-To run both frontend and backend together, you can use **concurrently**:
-```bash
-npm run start:all
-```
-
-### **5. Project Structure**
-```bash
-uroodx/
-├── frontend/          # Next.js frontend
-│   ├── components/    # Reusable components
-│   ├── pages/         # Page components
-│   ├── services/      # API interaction logic
-│   ├── context/       # Global state management
-│   └── ...
-├── backend/           # Express.js backend
-│   ├── models/        # MongoDB schemas
-│   ├── routes/        # API routes
-│   ├── controllers/   # Business logic
-│   ├── middlewares/   # Middleware functions
-│   ├── config/        # Config files
-│   └── ...
-├── .gitignore         # Git ignore file
-├── README.md          # Project documentation
-└── ...
 ```
 
 ---
@@ -104,7 +77,7 @@ uroodx/
 - **Backend**: Express.js, MongoDB
 - **Authentication**: JSON Web Tokens (JWT)
 - **Shipping API Integration**: Real-time data from DHL, FedEx, Aramex, etc.
-- **Deployment**: Vercel (Frontend), AWS EC2 (Backend)
+- **Deployment**: Netlify (Frontend), AWS beanstalk (Backend)
 
 ---
 
@@ -116,10 +89,11 @@ For any inquiries, feel free to reach out.
 
 ---
 
-- **Talk to me**: [Schedule a meeting](https://calendly.com/uyin/talk)
-- **GitHub**: [https://github.com/uy-in](https://github.com/uy-in)
-- **LinkedIn**: [https://www.linkedin.com/in/uyin](https://www.linkedin.com/in/uyin)
-- **Email**: [uy2110101@gmail.com](mailto:uy2110101@gmail.com)
+- [Schedule Google Meet](https://calendly.com/uyin/talk)
+- [WhatsApp Chat](https://wa.me/+918307988593)
+- [View my Github](https://github.com/ujjawaldeveloper)
+- [View my Linkedin](https://www.linkedin.com/in/ujjawaldeveloper)
+- [Write me email](mailto:uy2110101@gmail.com)
 
 ---
 
