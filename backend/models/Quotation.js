@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const QuotationSchema = new mongoose.Schema({
   order_id: { type: mongoose.Schema.Types.ObjectId, ref: "Order", required: true },
   courier_id: { type: mongoose.Schema.Types.ObjectId, ref: "Courier", required: true },
@@ -8,5 +7,4 @@ const QuotationSchema = new mongoose.Schema({
   eta_days: { type: Number, required: true },
   created_at: { type: Date, default: Date.now }
 });
-
 module.exports = mongoose.model("Quotation", QuotationSchema);

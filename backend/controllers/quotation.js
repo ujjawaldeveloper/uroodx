@@ -1,5 +1,4 @@
 const Quotation = require("../models/Quotation");
-
 exports.createQuotation = async (req, res) => {
   const { order_id, courier_id, source, rate, eta_days } = req.body;
   try {
@@ -17,7 +16,6 @@ exports.createQuotation = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.getQuotation = async (req, res) => {
   try {
     const quotation = await Quotation.findById(req.params.id);
@@ -28,7 +26,6 @@ exports.getQuotation = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.listQuotations = async (req, res) => {
   try {
     const quotations = await Quotation.find();

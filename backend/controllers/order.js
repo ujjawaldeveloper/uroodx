@@ -1,5 +1,4 @@
 const Order = require("../models/Order");
-
 exports.createOrder = async (req, res) => {
   const { user_id, courier_id, weight, shipping_mode, origin_port, destination_address, rate, eta_days, booking_ref, status, awb, tracking_url } = req.body;
   try {
@@ -24,7 +23,6 @@ exports.createOrder = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.getOrder = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
@@ -35,7 +33,6 @@ exports.getOrder = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.listOrders = async (req, res) => {
   try {
     const orders = await Order.find();
@@ -45,7 +42,6 @@ exports.listOrders = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.updateOrder = async (req, res) => {
   const { weight, shipping_mode, origin_port, destination_address, rate, eta_days, booking_ref, status, awb, tracking_url } = req.body;
   const orderFields = { weight, shipping_mode, origin_port, destination_address, rate, eta_days, booking_ref, status, awb, tracking_url };
@@ -58,7 +54,6 @@ exports.updateOrder = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.deleteOrder = async (req, res) => {
   try {
     let order = await Order.findById(req.params.id);

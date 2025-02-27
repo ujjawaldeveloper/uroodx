@@ -1,7 +1,6 @@
 const Admin = require("../models/Admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("../utils/jwt");
-
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -19,7 +18,6 @@ exports.register = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -38,7 +36,6 @@ exports.login = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.changePassword = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
   const admin_id = req.admin_id;

@@ -1,5 +1,4 @@
 const jwt = require("../utils/jwt");
-
 const verifyToken = (req, res, next) => {
   const { token } = req.headers;
   if (!token) {
@@ -13,5 +12,4 @@ const verifyToken = (req, res, next) => {
     res.status(401).json({ msg: "Token is not valid", error: err });
   }
 };
-
 module.exports = verifyToken;

@@ -1,5 +1,4 @@
 const User = require("../models/User");
-
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -10,7 +9,6 @@ exports.getUser = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.userList = async (req, res) => {
   try {
     const users = await User.find();
@@ -20,7 +18,6 @@ exports.userList = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.createUser = async (req, res) => {
   const { email, password_hash, company_name, address, subscription_plan } = req.body;
   try {
@@ -34,7 +31,6 @@ exports.createUser = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.editUser = async (req, res) => {
   const { company_name, address, subscription_plan } = req.body;
   const userFields = { company_name, address, subscription_plan, created_at: Date.now() };
@@ -47,7 +43,6 @@ exports.editUser = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.deleteUser = async (req, res) => {
   try {
     let user = await User.findById(req.params.id);

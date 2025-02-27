@@ -1,5 +1,4 @@
 const Courier = require("../models/Courier");
-
 exports.createCourier = async (req, res) => {
   const { name, shipping_modes, coverage_area, booking_url, tracking_url, api_key, discount_rate } = req.body;
   try {
@@ -19,7 +18,6 @@ exports.createCourier = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.getCouriers = async (req, res) => {
   try {
     const couriers = await Courier.find();
@@ -29,7 +27,6 @@ exports.getCouriers = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.getCourier = async (req, res) => {
   try {
     const courier = await Courier.findById(req.params.id);
@@ -40,7 +37,6 @@ exports.getCourier = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.updateCourier = async (req, res) => {
   const { name, shipping_modes, coverage_area, booking_url, tracking_url, api_key, discount_rate } = req.body;
   const courierFields = { name, shipping_modes, coverage_area, booking_url, tracking_url, api_key, discount_rate };
@@ -53,7 +49,6 @@ exports.updateCourier = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
-
 exports.deleteCourier = async (req, res) => {
   try {
     let courier = await Courier.findById(req.params.id);
