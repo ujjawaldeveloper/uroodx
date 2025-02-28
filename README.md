@@ -1,6 +1,6 @@
 # **UroodX - International Shipping Aggregator**
 
-Welcome to **UroodX**! 🚀  
+Hi, this is Ujjawal. If you are here for any **issue** then scroll to bottom and talk to me. Continued.......
 UroodX is a logistics aggregation platform that allows users to compare and book international shipping services seamlessly. Built with **Next.js, TailwindCSS, and JavaScript** for the frontend, and **Express.js with MongoDB** for the backend, this application provides an efficient way to find the best shipping partners based on pricing, shipping time, and paperwork requirements.
 
 ---
@@ -67,7 +67,7 @@ npm run dev
 
 ## **6. Live Demo**
 
-- **Live version**: [https://uroodx.netlify.app](https://uroodx.netlify.app)
+- **Live version**: [https://uroodx.vercel.app](https://uroodx.vercel.app)
 
 ---
 
@@ -77,15 +77,15 @@ npm run dev
 - **Backend**: Express.js, MongoDB
 - **Authentication**: JSON Web Tokens (JWT)
 - **Shipping API Integration**: Real-time data from DHL, FedEx, Aramex, etc.
-- **Deployment**: Netlify (Frontend), AWS beanstalk (Backend)
+- **Deployment**: Verel (Frontend), AWS beanstalk (Backend)
 
 ---
 
 ### **8. Thank You for Visiting!** 🎉
 
-We appreciate your interest in **UroodX**! Feel free to explore, use, and contribute. If you find this project useful, please ⭐ the repository!
+I appreciate your interest in my github account **ujjawaldeveloper**! Feel free to explore, use, and contribute. If you find this project useful, please ⭐ the repository!
 
-For any inquiries, feel free to reach out.
+For any inquiries, feel free to reach out. I would be happy to assist you.
 
 ---
 
