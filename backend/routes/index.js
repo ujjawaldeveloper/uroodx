@@ -6,6 +6,8 @@ const userController = require("../controllers/user");
 const courierController = require("../controllers/courier");
 const orderController = require("../controllers/order");
 const quotationController = require("../controllers/quotation");
+// const dhlController = require("../controllers/dhl");
+
 // Admin Routes
 router.post("/admin/register", adminController.register);
 router.post("/admin/login", adminController.login);
@@ -32,4 +34,6 @@ router.delete("/order/:id", verifyToken, orderController.deleteOrder);
 router.post("/quotation", verifyToken, quotationController.createQuotation);
 router.get("/quotation/:id", verifyToken, quotationController.getQuotation);
 router.get("/quotations", verifyToken, quotationController.listQuotations);
+// DHL Rating API Route
+// router.post("/dhl/rating", verifyToken, dhlController.getRating);
 module.exports = router;
