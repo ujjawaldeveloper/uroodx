@@ -1,27 +1,37 @@
 // app/page.js
 import React from 'react';
+import Link from "next/link";
+
 
 export default function HomePage() {
   return (
-    <main id="HomePage" className="bg-gray-100 min-h-screen">
-      <div className="flex flex-col items-center justify-center bg-gradient-to-r from-blue-600 to-yellow-500 text-white py-20">
-        <h1 className="text-4xl font-bold mb-4">Aggregate. Quote. Ship.</h1>
-        <p className="text-xl mb-8">Get Discounted Shipping Quotes Instantly</p>
-        <div className="flex space-x-4">
-          <a
-            href="/auth"
-            className="px-6 py-3 bg-yellow-400 text-blue-900 rounded hover:bg-yellow-300"
-          >
-            Get Started
-          </a>
-          <a
-            href="/auth"
-            className="px-6 py-3 border border-white rounded hover:bg-white hover:text-blue-900"
-          >
-            Learn More
-          </a>
-        </div>
-      </div>
-    </main>
+    <main className="bg-white">
+        {/* Hero Section */}
+        <section
+          className="relative bg-cover bg-center h-screen"
+          style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+        >
+          <div className="bg-black bg-opacity-50 h-full flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-5xl font-bold text-white">Welcome to UroodX</h1>
+              <p className="mt-4 text-xl text-gray-200">
+                Hi, this is Ujjawal. If you are here for any issue, scroll to the bottom and talk to me.
+              </p>
+              <p className="mt-2 text-lg text-gray-200">
+                Compare international shipping quotes and book shipments seamlessly.
+              </p>
+              <div className="mt-8 flex justify-center space-x-4">
+                <Link className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-500" href="/dashboard/quotes">
+                 Start Comparing Shipping Quotes
+                </Link>
+                <Link className="px-6 py-3 bg-gray-100 text-gray-800 rounded-md hover:bg-gray-200" href="/features">
+                 Learn more about UroodX
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* Additional sections can be added here as needed */}
+      </main>
   );
 }

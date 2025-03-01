@@ -1,13 +1,19 @@
-// app/routes.js
 const routes = {
   home: "/",
+  features: "/features",
+  subscription: "/subscription",
+  contact: "/contact",
   auth: "/auth",
   dashboard: "/dashboard",
-  quote: "/quote",
-  shipment: "/shipment",
-  tracking: "/tracking",
-  payment: "/payment",
-  adminDashboard: "/admin/dashboard",
+  quotes: "/dashboard/quotes",
+  shipment:"/dashboard/shipment",
+  tracking: "/dashboard/tracking",
+  payment: "/dashboard/payment",
+  profile: "/dashboard/profile",
+  subscription:"/dashboard/subscription",
+  admin:"/admin",
+  adminUsers:"/admin/users",
+  adminCouriers:"/admin/couriers",
+  adminTransactions:"/admin/transactions"
 };
-
 export default routes;
