@@ -10,7 +10,6 @@ const routes = {
   tracking: "/dashboard/tracking",
   payment: "/dashboard/payment",
   profile: "/dashboard/profile",
-  subscription:"/dashboard/subscription",
   admin:"/admin",
   adminUsers:"/admin/users",
   adminCouriers:"/admin/couriers",

@@ -16,7 +16,7 @@ const Header = () => {
             <Link href={routes.home}>
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                src="og-image.png"
                 alt="UroodX Logo"
               />
             </Link>

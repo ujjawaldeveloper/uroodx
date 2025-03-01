@@ -1,58 +1,102 @@
-import React from "react";
+import { CheckIcon } from "@heroicons/react/20/solid";
+import { tiers } from "./data.js";
+import Link from "next/link.js";
 
-const Subscription = () => {
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export default function Subscription() {
   return (
-    <div className="py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-800 text-center">Subscription Plans</h1>
-        <p className="mt-4 text-center text-gray-600">
-          Choose the plan that best fits your shipping needs.
+    <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div className="mx-auto max-w-4xl text-center">
+        <h2 className="text-base font-semibold text-indigo-600">Pricing</h2>
+        <p className="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          Choose the right plan for you
         </p>
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Free Plan */}
-          <div className="border border-gray-300 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-800">Free Plan</h2>
-            <p className="mt-2 text-gray-600">
-              Basic quote comparison, limited features, and essential shipping information.
+      </div>
+      <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-gray-600 sm:text-xl">
+        Choose an affordable plan that’s packed with the best features for
+        engaging your audience, creating customer loyalty, and driving sales.
+      </p>
+      {/* Pricing Tiers */}
+      <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
+        {tiers.map((tier, tierIdx) => (
+          <div
+            key={tier.id}
+            className={classNames(
+              tier.featured
+                ? "relative bg-gray-900 shadow-2xl"
+                : "bg-white/60 sm:mx-8 lg:mx-0",
+              tier.featured
+                ? ""
+                : tierIdx === 0
+                ? "rounded-t-3xl sm:rounded-b-none lg:rounded-tr-none lg:rounded-bl-3xl"
+                : "sm:rounded-t-none lg:rounded-tr-3xl lg:rounded-bl-none",
+              "rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10"
+            )}
+          >
+            <h3
+              id={tier.id}
+              className={classNames(
+                tier.featured ? "text-indigo-400" : "text-indigo-600",
+                "text-base font-semibold"
+              )}
+            >
+              {tier.name}
+            </h3>
+            <p className="mt-4 flex items-baseline gap-x-2">
+              <span
+                className={classNames(
+                  tier.featured ? "text-white" : "text-gray-900",
+                  "text-5xl font-semibold tracking-tight"
+                )}
+              >
+                {tier.priceMonthly}
+              </span>
+              <span
+                className={classNames(
+                  tier.featured ? "text-gray-400" : "text-gray-500",
+                  "text-base"
+                )}
+              >
+                /month
+              </span>
             </p>
-            <div className="mt-4">
-              <span className="text-4xl font-bold text-gray-800">$0</span>
-              <span className="text-gray-600 text-sm">/month</span>
-            </div>
-            <ul className="mt-4 space-y-2">
-              <li className="text-gray-600">Access to basic shipping quotes</li>
-              <li className="text-gray-600">Limited shipment tracking</li>
-              <li className="text-gray-600">Standard support</li>
-            </ul>
-            <button className="mt-6 w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500">
-              Choose Free Plan
-            </button>
-          </div>
-
-          {/* Premium Plan */}
-          <div className="border border-gray-300 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-800">Premium Plan</h2>
-            <p className="mt-2 text-gray-600">
-              Full access to premium shipping quotes, advanced tracking, and exclusive offers.
+            <p
+              className={classNames(
+                tier.featured ? "text-gray-300" : "text-gray-600",
+                "mt-6 text-base"
+              )}
+            >
+              {tier.description}
             </p>
-            <div className="mt-4">
-              <span className="text-4xl font-bold text-gray-800">$49</span>
-              <span className="text-gray-600 text-sm">/month</span>
-            </div>
-            <ul className="mt-4 space-y-2">
-              <li className="text-gray-600">Unlimited shipping quote comparisons</li>
-              <li className="text-gray-600">Real-time shipment tracking</li>
-              <li className="text-gray-600">Priority customer support</li>
-              <li className="text-gray-600">Exclusive discounts and offers</li>
+            <ul
+              role="list"
+              className={classNames(
+                tier.featured ? "text-gray-300" : "text-gray-600",
+                "mt-8 space-y-3 text-sm"
+              )}
+            >
+              {tier.features.map((feature) => (
+                <li key={feature} className="flex gap-x-3">
+                  <CheckIcon
+                    aria-hidden="true"
+                    className={classNames(
+                      tier.featured ? "text-indigo-400" : "text-indigo-600",
+                      "h-6 w-5 flex-none"
+                    )}
+                  />
+                  {feature}
+                </li>
+              ))}
             </ul>
-            <button className="mt-6 w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500">
-              Choose Premium Plan
-            </button>
+            
+              <Link href="/auth" className="text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-indigo-600 mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2">Get Started today</Link>
+            
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
-};
-
-export default Subscription;
+}
