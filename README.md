@@ -77,7 +77,7 @@ npm run dev
 - **Backend**: Express.js, MongoDB
 - **Authentication**: JSON Web Tokens (JWT)
 - **Shipping API Integration**: Real-time data from DHL, FedEx, Aramex, etc.
-- **Deployment**: Verel (Frontend), AWS beanstalk (Backend)
+- **Deployment**: Vercel (Frontend), AWS beanstalk (Backend)
 
 ---
 
