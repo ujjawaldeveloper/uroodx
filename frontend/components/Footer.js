@@ -1,37 +1,37 @@
-
 export default function Footer() {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 py-6 sm:py-6 lg:py-6">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-          <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-2xl font-semibold tracking-tight text-white">Subscribe to our newsletter</h2>
-            <p className="mt-4 text-lg text-gray-300">
-              To get latest updates or offers on Uroodx subscribe to our newsletter.
-            </p>
-            <div className="mt-6 flex max-w-md gap-x-4">
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                autoComplete="email"
-                className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-              />
-              <button
-                type="submit"
-                className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
+    <footer className="bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800">
+      <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          © 2025{" "}
+          <a className="hover:underline">
+            UroodX™
+          </a>
+          . All Rights Reserved.
+        </span>
+        <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+          <li>
+            <a className="hover:underline me-4 md:me-6">
+              About
+            </a>
+          </li>
+          <li>
+            <a className="hover:underline me-4 md:me-6">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a className="hover:underline me-4 md:me-6">
+              Licensing
+            </a>
+          </li>
+          <li>
+            <a className="hover:underline">
+              Contact
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
-  )
+    </footer>
+  );
 }

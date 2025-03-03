@@ -1,14 +1,43 @@
 import { CheckIcon } from "@heroicons/react/20/solid";
-import { tiers } from "./data.js";
 import Link from "next/link.js";
 
+const tiers = [
+  {
+    name: 'Free Plan',
+    id: 'tier-hobby',
+    href: '#',
+    priceMonthly: '$0',
+    description: "Basic quote comparison, limited features, and essential shipping information.",
+    features: [
+      'Access to basic shipping qoutes',
+      'Limited shipment tracking',
+      'Standard analytics',
+      'Standard support',
+    ],
+    featured: false,
+  },
+  {
+    name: 'Premium Plan',
+    id: 'tier-enterprise',
+    href: '#',
+    priceMonthly: '$29',
+    description: 'Full access to premium shipping quotes, advanced tracking, and exclusive offers.',
+    features: [
+      'Unlimited shipping quote comparisons',
+      'Real-time shipment tracking',
+      'Priority customer support',
+      'Exclusive discounts and offers',
+    ],
+    featured: true,
+  },
+];
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Subscription() {
   return (
-    <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div id="subscription" className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="text-base font-semibold text-indigo-600">Pricing</h2>
         <p className="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
