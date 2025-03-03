@@ -7,7 +7,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
   // Temporary authentication state; set to true to simulate a logged-in user.
-  const [authenticated, setAuthenticated] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ const Header = () => {
       >
         <div className="flex lg:flex-1">
           <Link href={routes.home} className="-m-1.5 p-1.5">
-            <img alt="UroodX logo" src="og-image.png" className="h-8 w-auto" />
+            <img alt="UroodX logo" src="/og-image.png" className="h-8 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -38,12 +38,7 @@ const Header = () => {
           >
             Get Quote
           </Link>
-          <Link
-            href={routes.shipment}
-            className="text-sm/6 font-semibold text-gray-900"
-          >
-            Book Shipment
-          </Link>
+
           <Link
             href={routes.tracking}
             className="text-sm/6 font-semibold text-gray-900"
@@ -66,15 +61,6 @@ const Header = () => {
               >
                 Profile
               </Link>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setAuthenticated(false);
-                }}
-                className="text-sm/6 font-semibold text-gray-900"
-              >
-                Logout
-              </button>
             </>
           ) : (
             <Link
@@ -121,13 +107,7 @@ const Header = () => {
                 >
                   Get Quote
                 </Link>
-                <Link
-                  onClick={() => setMobileMenuOpen(false)}
-                  href={routes.shipment}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Book Shipment
-                </Link>
+
                 <Link
                   onClick={() => setMobileMenuOpen(false)}
                   href={routes.tracking}

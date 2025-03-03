@@ -1,3 +1,4 @@
+import routes from "@/app/routes";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import Link from "next/link.js";
 
@@ -121,7 +122,7 @@ export default function Subscription() {
               ))}
             </ul>
             
-              <Link href="/auth" className="text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-indigo-600 mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2">Get Started today</Link>
+              <Link href={routes.auth} className="text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-indigo-600 mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2">Get Started today</Link>
             
           </div>
         ))}

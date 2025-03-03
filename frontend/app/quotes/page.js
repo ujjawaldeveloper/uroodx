@@ -1,28 +1,14 @@
 "use client";
 import React, { useState } from "react";
-
-const countries = [
-  "United States",
-  "Canada",
-  "United Kingdom",
-  "Germany",
-  "Australia",
-  "France",
-  "Japan",
-  "China",
-  "India",
-  "Brazil",
-];
+import Link from "next/link";
+import { countries, mockQuotes } from "./data"; // Adjust path if necessary
+import routes from "../routes";
 
 const DashboardQuotes = () => {
-  // Shipment details form state, including country dropdowns.
+  // Shipment details form state (only country and a few extra details for simplicity)
   const [formData, setFormData] = useState({
-    fromAddress: "",
-    toAddress: "",
-    fromPin: "",
-    toPin: "",
-    fromCountry: "United States",
-    toCountry: "United Kingdom",
+    fromCountry: "USA",
+    toCountry: "UK",
     material: "",
     weight: "",
     length: "",
@@ -34,131 +20,18 @@ const DashboardQuotes = () => {
   const [submitted, setSubmitted] = useState(false);
   const [quotes, setQuotes] = useState([]);
 
-  // Filters state.
+  // Filter states: speed, priceOrder, and searchText.
   const [filters, setFilters] = useState({
     speed: "",
     priceOrder: "",
   });
+  const [searchText, setSearchText] = useState("");
 
   // Update form state on input/select change.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  // Mock data for shipping quotes with additional details.
-  const mockQuotes = [
-    {
-      id: 1,
-      courier: "DHL",
-      price: 120,
-      delivery: "3-5 days",
-      discount: "10%",
-      speed: "Fast",
-      insurance: "$5",
-      fromCountry: "United States",
-      toCountry: "United Kingdom",
-    },
-    {
-      id: 2,
-      courier: "FedEx",
-      price: 110,
-      delivery: "4-6 days",
-      discount: "5%",
-      speed: "Standard",
-      insurance: "$4",
-      fromCountry: "United States",
-      toCountry: "United Kingdom",
-    },
-    {
-      id: 3,
-      courier: "UPS",
-      price: 130,
-      delivery: "3-4 days",
-      discount: "15%",
-      speed: "Fast",
-      insurance: "$6",
-      fromCountry: "United States",
-      toCountry: "Germany",
-    },
-    {
-      id: 4,
-      courier: "TNT",
-      price: 100,
-      delivery: "5-7 days",
-      discount: "8%",
-      speed: "Economy",
-      insurance: "$3",
-      fromCountry: "Canada",
-      toCountry: "United Kingdom",
-    },
-    {
-      id: 5,
-      courier: "Aramex",
-      price: 140,
-      delivery: "2-4 days",
-      discount: "12%",
-      speed: "Fast",
-      insurance: "$7",
-      fromCountry: "United States",
-      toCountry: "United Kingdom",
-    },
-    {
-      id: 6,
-      courier: "DHL",
-      price: 115,
-      delivery: "4-5 days",
-      discount: "10%",
-      speed: "Standard",
-      insurance: "$5",
-      fromCountry: "United States",
-      toCountry: "United Kingdom",
-    },
-    {
-      id: 7,
-      courier: "FedEx",
-      price: 105,
-      delivery: "5-6 days",
-      discount: "5%",
-      speed: "Economy",
-      insurance: "$4",
-      fromCountry: "United States",
-      toCountry: "United Kingdom",
-    },
-    {
-      id: 8,
-      courier: "UPS",
-      price: 125,
-      delivery: "3-5 days",
-      discount: "7%",
-      speed: "Fast",
-      insurance: "$6",
-      fromCountry: "Canada",
-      toCountry: "Germany",
-    },
-    {
-      id: 9,
-      courier: "TNT",
-      price: 135,
-      delivery: "4-6 days",
-      discount: "9%",
-      speed: "Standard",
-      insurance: "$5",
-      fromCountry: "Australia",
-      toCountry: "United Kingdom",
-    },
-    {
-      id: 10,
-      courier: "Aramex",
-      price: 95,
-      delivery: "5-7 days",
-      discount: "4%",
-      speed: "Economy",
-      insurance: "$3",
-      fromCountry: "United States",
-      toCountry: "United Kingdom",
-    },
-  ];
 
   // On form submission, filter the mock data by selected countries.
   const handleSubmit = (e) => {
@@ -178,6 +51,11 @@ const DashboardQuotes = () => {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Update search text.
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
   // Apply additional filters.
   let filteredQuotes = quotes;
   if (filters.speed) {
@@ -190,13 +68,17 @@ const DashboardQuotes = () => {
   } else if (filters.priceOrder === "desc") {
     filteredQuotes = filteredQuotes.slice().sort((a, b) => b.price - a.price);
   }
+  // Apply search filter by courier name.
+  const finalQuotes = filteredQuotes.filter((q) =>
+    q.courier.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   return (
-    <div className="py-12 bg-white">
+    <div className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-800">
+        <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
           Get Shipping Quotes
-        </h1>
+        </h2>
         <p className="mt-4 text-gray-600">
           Enter your shipment details to receive pricing from top international
           shipping partners.
@@ -204,9 +86,9 @@ const DashboardQuotes = () => {
 
         {/* Shipment Details Form */}
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-6 gap-6">
             {/* From Country Dropdown */}
-            <div>
+            <div className="col-span-1">
               <label
                 htmlFor="fromCountry"
                 className="block text-sm font-medium text-gray-900"
@@ -229,7 +111,7 @@ const DashboardQuotes = () => {
               </select>
             </div>
             {/* Destination Country Dropdown */}
-            <div>
+            <div className="col-span-1">
               <label
                 htmlFor="toCountry"
                 className="block text-sm font-medium text-gray-900"
@@ -252,7 +134,7 @@ const DashboardQuotes = () => {
               </select>
             </div>
             {/* Material Type */}
-            <div>
+            <div className="col-span-1">
               <label
                 htmlFor="material"
                 className="block text-sm font-medium text-gray-900"
@@ -276,7 +158,7 @@ const DashboardQuotes = () => {
               </select>
             </div>
             {/* Weight */}
-            <div>
+            <div className="col-span-1">
               <label
                 htmlFor="weight"
                 className="block text-sm font-medium text-gray-900"
@@ -293,30 +175,13 @@ const DashboardQuotes = () => {
                 className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
               />
             </div>
-            {/* Length */}
-            <div>
-              <label
-                htmlFor="length"
-                className="block text-sm font-medium text-gray-900"
-              >
-                Length (cm)
-              </label>
-              <input
-                type="number"
-                id="length"
-                name="length"
-                value={formData.length}
-                onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"
-              />
-            </div>
             {/* Width */}
-            <div>
+            <div className="col-span-1">
               <label
                 htmlFor="width"
                 className="block text-sm font-medium text-gray-900"
               >
-                Width (cm)
+                Width(cm) Optional
               </label>
               <input
                 type="number"
@@ -328,12 +193,12 @@ const DashboardQuotes = () => {
               />
             </div>
             {/* Height */}
-            <div>
+            <div className="col-span-1">
               <label
                 htmlFor="height"
                 className="block text-sm font-medium text-gray-900"
               >
-                Height (cm)
+                Height (cm) Optional
               </label>
               <input
                 type="number"
@@ -355,15 +220,22 @@ const DashboardQuotes = () => {
           </div>
         </form>
 
-        {/* Show filters and quotes only if form is submitted */}
-        {submitted && quotes.length > 0 && (
-          <>
-            {/* Filter Section */}
-            <div className="mt-10">
-              <h2 className="text-2xl font-bold text-gray-800">
-                Available Shipping Partners
-              </h2>
-              <div className="mt-4 flex gap-4">
+        {/* Render Table if form is submitted */}
+        {submitted && (
+          <div className="mt-10">
+            {/* Filter and Search Controls */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4">
+              <div className="mb-4 sm:mb-0">
+                <input
+                  type="text"
+                  id="table-search"
+                  value={searchText}
+                  onChange={handleSearchChange}
+                  placeholder="Search by Courier"
+                  className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div className="flex flex-wrap gap-4 items-center">
                 <div>
                   <label
                     htmlFor="speed"
@@ -406,66 +278,74 @@ const DashboardQuotes = () => {
               </div>
             </div>
 
-            {/* Quotes Table */}
-            <div className="mt-8 overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+            {/* Table */}
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table className="w-full text-sm text-left text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3">
                       Courier
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3">
                       Price
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3">
                       Delivery Time
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3">
                       Discount
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3">
                       Insurance
                     </th>
-                    <th className="px-6 py-3 relative">
-                      <span className="sr-only">Book</span>
+                    <th scope="col" className="px-6 py-3">
+                      Speed
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Action
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredQuotes.map((quote) => (
-                    <tr key={quote.id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <tbody>
+                  {finalQuotes.map((quote) => (
+                    <tr
+                      key={quote.id}
+                      className="bg-white border-b hover:bg-gray-50"
+                    >
+                      <td className="px-6 py-4 font-medium text-gray-900">
                         {quote.courier}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 text-gray-500">
                         ${quote.price}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 text-gray-500">
                         {quote.delivery}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 text-gray-500">
                         {quote.discount}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 text-gray-500">
                         {quote.insurance}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button className="text-indigo-600 hover:text-indigo-900">
+                      <td className="px-6 py-4 text-gray-500">{quote.speed}</td>
+                      <td className="px-6 py-4 text-gray-500">
+                        <Link
+                          href={routes.shipment}
+                          className="text-indigo-600 hover:text-indigo-900"
+                        >
                           Book Now
-                        </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          </>
-        )}
-
-        {/* If no quotes found, show a message */}
-        {submitted && quotes.length === 0 && (
-          <div className="mt-8 text-center text-gray-600">
-            No shipping partners available for the selected countries.
+            {finalQuotes.length === 0 && (
+              <div className="mt-8 text-center text-gray-600">
+                No shipping partners available for the selected filters.
+              </div>
+            )}
           </div>
         )}
       </div>

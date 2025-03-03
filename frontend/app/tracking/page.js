@@ -20,9 +20,9 @@ const Tracking = () => {
   const currentStepIndex = currentStatus ? steps.indexOf(currentStatus) : -1;
 
   return (
-    <div className="py-12 bg-white">
+    <div className="py-32 bg-white">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-800 text-center">Track Shipment</h1>
+        <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Track Shipment</h2>
         <p className="mt-4 text-center text-gray-600">
           Enter your tracking number to see your shipment's status.
         </p>

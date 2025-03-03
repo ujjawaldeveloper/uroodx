@@ -21,7 +21,7 @@ const Payment = () => {
   };
 
   return (
-    <div className="py-12 bg-white">
+    <div className="py-24 bg-white">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-800 text-center">Payment</h1>
         <p className="mt-4 text-center text-gray-600">
