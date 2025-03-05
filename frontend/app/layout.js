@@ -1,34 +1,39 @@
-import React from 'react';
-import './globals.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import React from "react";
+import "./globals.css";
+import Header from "./Header";
+import Footer from "./Footer";
+import { AuthProvider } from "./context/AuthContext";
+import { QuoteProvider } from "./context/QuoteContext";
 
 export const metadata = {
-  title: 'UroodX - Get Discounted International Shipping Quotes',
-  description: 'UroodX aggregates shipping quotes from multiple couriers to help you save money on international shipments. Get real-time tracking and seamless booking.',
+  title: "UroodX - Get Discounted International Shipping Quotes",
+  description:
+    "UroodX aggregates shipping quotes from multiple couriers to help you save money on international shipments. Get real-time tracking and seamless booking.",
   openGraph: {
-    title: 'UroodX - Shipping Quotes',
-    description: 'Compare shipping quotes instantly. Save on your international shipments with UroodX.',
-    url: 'https://uroodx.vercel.app',
-    siteName: 'UroodX',
+    title: "UroodX - Shipping Quotes",
+    description:
+      "Compare shipping quotes instantly. Save on your international shipments with UroodX.",
+    url: "https://uroodx.vercel.app",
+    siteName: "UroodX",
     images: [
       {
-        url: 'https://uroodx.vercel.app/og-image.png',
+        url: "https://uroodx.vercel.app/og-image.png",
         width: 800,
         height: 600,
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'UroodX - Shipping Quotes',
-    description: 'Compare shipping quotes instantly and book shipments with ease.',
-    images: ['https://uroodx.vercel.app/og-image.png'],
+    card: "summary_large_image",
+    title: "UroodX - Shipping Quotes",
+    description:
+      "Compare shipping quotes instantly and book shipments with ease.",
+    images: ["https://uroodx.vercel.app/og-image.png"],
   },
   alternates: {
-    canonical: 'https://uroodx.vercel.app',
+    canonical: "https://uroodx.vercel.app",
   },
 };
 
@@ -36,6 +41,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased">
+      <AuthProvider>
+      <QuoteProvider>
         <Header />
         {children}
         <Footer />
@@ -43,19 +50,21 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'UroodX',
-              url: 'https://uroodx.vercel.app',
-              logo: 'https://uroodx.vercel.app/favicon.ico',
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "UroodX",
+              url: "https://uroodx.vercel.app",
+              logo: "https://uroodx.vercel.app/favicon.ico",
               sameAs: [
-                'https://www.facebook.com/uroodx',
-                'https://twitter.com/uroodx',
-                'https://www.linkedin.com/company/uroodx',
+                "https://www.facebook.com/uroodx",
+                "https://twitter.com/uroodx",
+                "https://www.linkedin.com/company/uroodx",
               ],
             }),
           }}
         />
+        </QuoteProvider>
+        </AuthProvider>
       </body>
     </html>
   );

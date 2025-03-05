@@ -1,58 +1,99 @@
-"use client"
+"use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import routes from "../routes";
+import { useAuth } from "../context/AuthContext";
 
 export default function Auth() {
-  // view can be 'login', 'signup', or 'forgot'
+  const {login} = useAuth()
+  const router = useRouter();
   const [view, setView] = useState("login");
-
-  // State for login form
   const [loginData, setLoginData] = useState({ email: "", password: "" });
-  // State for signup form
   const [signupData, setSignupData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  // State for forgot password form
   const [forgotEmail, setForgotEmail] = useState("");
-
-  // Handlers for login
+  const [message, setMessage] = useState("");
   const handleLoginChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
   };
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", loginData);
-    // Insert your login API logic here
+    setMessage("");
+    try {
+      const res = await fetch("http://localhost:4000/v1/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setMessage(data.msg || "Login failed");
+      } else {
+        // Save token for later use
+        login(data)
+        setMessage("Login successful!");
+        router.push(routes.admin)
+        // Optionally, redirect to dashboard
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setMessage("An error occurred during login.");
+    }
   };
-
-  // Handlers for signup
   const handleSignupChange = (e) => {
     const { name, value } = e.target;
     setSignupData({ ...signupData, [name]: value });
   };
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
     if (signupData.password !== signupData.confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    console.log("Signing up with:", signupData);
-    // Insert your signup API logic here
+    const payload = {
+      name: signupData.name,
+      email: signupData.email,
+      password: signupData.password,
+    };
+    try {
+      const res = await fetch("http://localhost:4000/v1/admin/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setMessage(data.msg || "Signup failed");
+      } else {
+        setMessage("Registration successful! Please login.");
+        setView("login");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      setMessage("An error occurred during registration.");
+    }
   };
-
-  // Handlers for forgot password
   const handleForgotSubmit = (e) => {
     e.preventDefault();
     console.log("Sending reset link to:", forgotEmail);
-    // Insert your forgot password API logic here
   };
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-24 lg:px-16">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        {message && (
+          <div className="mb-4 text-center text-sm text-red-600">{message}</div>
+        )}
         {view === "login" && (
           <>
             <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
@@ -60,7 +101,10 @@ export default function Auth() {
             </h2>
             <form onSubmit={handleLoginSubmit} className="mt-10 space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-900">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-900"
+                >
                   Email address
                 </label>
                 <div className="mt-2">
@@ -79,7 +123,10 @@ export default function Auth() {
 
               <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-900">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-900"
+                  >
                     Password
                   </label>
                   <div className="text-sm">
@@ -135,7 +182,10 @@ export default function Auth() {
             </h2>
             <form onSubmit={handleSignupSubmit} className="mt-10 space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-900">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-900"
+                >
                   Name
                 </label>
                 <div className="mt-2">
@@ -152,7 +202,10 @@ export default function Auth() {
               </div>
 
               <div>
-                <label htmlFor="email-signup" className="block text-sm font-medium text-gray-900">
+                <label
+                  htmlFor="email-signup"
+                  className="block text-sm font-medium text-gray-900"
+                >
                   Email address
                 </label>
                 <div className="mt-2">
@@ -170,7 +223,10 @@ export default function Auth() {
               </div>
 
               <div>
-                <label htmlFor="password-signup" className="block text-sm font-medium text-gray-900">
+                <label
+                  htmlFor="password-signup"
+                  className="block text-sm font-medium text-gray-900"
+                >
                   Password
                 </label>
                 <div className="mt-2">
@@ -188,7 +244,10 @@ export default function Auth() {
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-900">
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium text-gray-900"
+                >
                   Confirm Password
                 </label>
                 <div className="mt-2">
@@ -234,7 +293,10 @@ export default function Auth() {
             </h2>
             <form onSubmit={handleForgotSubmit} className="mt-10 space-y-6">
               <div>
-                <label htmlFor="forgotEmail" className="block text-sm font-medium text-gray-900">
+                <label
+                  htmlFor="forgotEmail"
+                  className="block text-sm font-medium text-gray-900"
+                >
                   Email address
                 </label>
                 <div className="mt-2">

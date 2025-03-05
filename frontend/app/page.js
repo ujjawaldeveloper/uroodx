@@ -1,13 +1,8 @@
-"use client";
-import FeaturesPage from "../components/Features";
-import Subscription from "../components/Subscription";
-import Hero from "../components/Hero";
+import Main from "./Main";
 
 export default function Homepage() {
   return (<>
-    <Hero />
-    <FeaturesPage />
-    <Subscription />
+    <Main />
     </>
   );
 }

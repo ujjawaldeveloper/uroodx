@@ -1,15 +1,20 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import routes from "../app/routes";
+import routes from "./routes";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useAuth } from "./context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
-  // Temporary authentication state; set to true to simulate a logged-in user.
-  const [authenticated, setAuthenticated] = useState(false);
+  const {user,logout} = useAuth();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const handleLogout = ()=>{
+    logout();
+    router.push(routes.home)
+  }
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       <nav
@@ -53,14 +58,14 @@ const Header = () => {
           </Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {authenticated ? (
+          {user ? (
             <>
-              <Link
-                href={routes.profile}
+              <button
+                onClick={handleLogout}
                 className="text-sm/6 font-semibold text-gray-900"
               >
-                Profile
-              </Link>
+                Logout
+              </button>
             </>
           ) : (
             <Link
@@ -124,14 +129,14 @@ const Header = () => {
                 </Link>
               </div>
               <div className="py-6">
-                {authenticated ? (
+                {user ? (
                   <div className="flex items-center space-x-4">
-                    <Link
-                      href={routes.profile}
+                    <button
+                      onClick={handleLogout}
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                     >
-                      Profile
-                    </Link>
+                      Logout
+                    </button>
                   </div>
                 ) : (
                   <Link
