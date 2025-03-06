@@ -19,7 +19,7 @@ export default function Login() {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await fetch("http://localhost:4000/v1/admin/login", {
+      const res = await fetch("https://uroodx-api.vercel.app/v1/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
