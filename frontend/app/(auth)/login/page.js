@@ -19,7 +19,7 @@ export default function Login() {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await fetch("https://uroodx-api.vercel.app/v1/admin/login", {
+      const res = await fetch("http://localhost:4000/v1/admin/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function Login() {
               <label htmlFor="password" className="block text-sm font-medium text-gray-900">
                 Password
               </label>
-              <div className="text-sm">
+              {/* <div className="text-sm">
                 <button
                   type="button"
                   onClick={() => router.push(routes.forgot)}
@@ -79,7 +79,7 @@ export default function Login() {
                 >
                   Forgot password?
                 </button>
-              </div>
+              </div> */}
             </div>
             <div className="mt-2">
               <input

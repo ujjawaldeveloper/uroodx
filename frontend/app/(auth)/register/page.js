@@ -32,7 +32,7 @@ export default function Register() {
       password: signupData.password,
     };
     try {
-      const res = await fetch("https://uroodx-api.vercel.app/v1/admin/register", {
+      const res = await fetch("http://localhost:4000/v1/admin/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

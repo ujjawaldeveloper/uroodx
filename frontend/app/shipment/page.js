@@ -1,11 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import routes from "../routes";
-import authCheck from "../context/authCheck";
+import Loading from "../loading";
 
 const Shipment = () => {
   const router = useRouter();
+  const [isAuthenticated,setIsAuthenticated] = useState(false);
   const [formData, setFormData] = useState({
     senderName: "",
     senderPhone: "",
@@ -32,6 +33,17 @@ const Shipment = () => {
     pickupDate: "",
     specialInstructions: "",
   });
+  // Check if user is authenticated on mount (via token in localStorage)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // If no token, redirect to the login page
+      router.push(routes.login);
+    } else {
+      // If token exists, set isAuthenticated to true
+      setIsAuthenticated(true);
+    }
+  }, [router]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -41,10 +53,10 @@ const Shipment = () => {
     router.push(routes.payment);
     console.log("Shipment booked", formData);
   };
-  const user = authCheck();
-
+  if (!isAuthenticated) {
+      return <Loading />;
+    }
   return (
-    user && (
       <div className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-800">Book Shipment</h1>
@@ -514,7 +526,6 @@ const Shipment = () => {
           </form>
         </div>
       </div>
-    )
   );
 };
 export default Shipment;

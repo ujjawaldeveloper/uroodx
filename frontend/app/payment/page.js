@@ -1,15 +1,31 @@
-"use client"
-import React, { useState } from "react";
-import authCheck from "../context/authCheck";
+"use client";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import routes from "../routes";
+import Loading from "../loading";
 
 const Payment = () => {
-  const user = authCheck();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     cardHolder: "",
     cardNumber: "",
     expiry: "",
     cvv: "",
   });
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check if user is authenticated on mount (via token in localStorage)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // If no token, redirect to the login page
+      router.push(routes.login);
+    } else {
+      // If token exists, set isAuthenticated to true
+      setIsAuthenticated(true);
+    }
+  }, [router]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,16 +38,24 @@ const Payment = () => {
     console.log("Processing payment with details:", formData);
   };
 
-  return user && (
+  if (!isAuthenticated) {
+    return <Loading />;
+  }
+
+  return (
     <div className="py-24 bg-white">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-800 text-center">Payment</h1>
+        <h1 className="text-3xl font-bold text-gray-800 text-center">
+          Payment
+        </h1>
         <p className="mt-4 text-center text-gray-600">
           Review your payment details and complete the transaction.
         </p>
         {/* Invoice Summary */}
         <div className="mt-8 p-4 border rounded-md">
-          <h2 className="text-xl font-semibold text-gray-800">Invoice Summary</h2>
+          <h2 className="text-xl font-semibold text-gray-800">
+            Invoice Summary
+          </h2>
           <p className="mt-2 text-gray-600">
             Total Amount: <span className="font-bold">$120.00</span>
           </p>
