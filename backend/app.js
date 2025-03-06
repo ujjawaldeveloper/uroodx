@@ -2,15 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const app = express();
-const corsOptions = {
-  origin: "https://uroodx.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
 require("dotenv").config();
-app.use(cors(corsOptions));
+const app = express();
+app.use(cors());
 app.use(express.json());
 app.use("/v1", routes);
 mongoose
