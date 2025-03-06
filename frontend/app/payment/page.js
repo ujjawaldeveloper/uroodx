@@ -1,7 +1,9 @@
 "use client"
 import React, { useState } from "react";
+import authCheck from "../context/authCheck";
 
 const Payment = () => {
+  const user = authCheck();
   const [formData, setFormData] = useState({
     cardHolder: "",
     cardNumber: "",
@@ -20,7 +22,7 @@ const Payment = () => {
     console.log("Processing payment with details:", formData);
   };
 
-  return (
+  return user && (
     <div className="py-24 bg-white">
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-gray-800 text-center">Payment</h1>

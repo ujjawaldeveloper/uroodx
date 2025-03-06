@@ -95,7 +95,7 @@ export default function Main() {
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
-                  href={routes.auth}
+                  href={routes.register}
                   className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get Started
@@ -240,7 +240,7 @@ export default function Main() {
               </ul>
 
               <Link
-                href={routes.auth}
+                href={routes.register}
                 className="text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300 focus-visible:outline-indigo-600 mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2"
               >
                 Get Started today

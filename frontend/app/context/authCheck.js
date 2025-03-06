@@ -10,7 +10,7 @@ export default function authCheck() {
 
   useEffect(() => {
     if (!user) {
-      router.push(routes.auth);
+      router.push(routes.login);
     }
   }, [user, router]);
 

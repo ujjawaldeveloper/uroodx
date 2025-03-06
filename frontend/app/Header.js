@@ -12,8 +12,9 @@ const Header = () => {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleLogout = ()=>{
-    logout();
-    router.push(routes.home)
+    let confirm = window.confirm("Are you sure you want to logout?");
+    if(confirm){logout();
+    router.push(routes.home)}
   }
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -69,7 +70,7 @@ const Header = () => {
             </>
           ) : (
             <Link
-              href={routes.auth}
+              href={routes.login}
               className="text-sm/6 font-semibold text-gray-900"
             >
               Log in
@@ -140,7 +141,7 @@ const Header = () => {
                   </div>
                 ) : (
                   <Link
-                    href={routes.auth}
+                    href={routes.login}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   >
                     Log in
